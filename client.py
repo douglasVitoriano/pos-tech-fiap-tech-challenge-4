@@ -1,7 +1,3 @@
-# Projeto 2 - Construção e Deploy de API - Machine Learning Para Prever o Preço do Bitcoin
-# APP Cliente
-
-# Import
 import requests
 
 # Dados que serão passados para a API
