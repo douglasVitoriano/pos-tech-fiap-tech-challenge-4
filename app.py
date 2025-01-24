@@ -5,6 +5,7 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 from joblib import load
 import yfinance as yf
+import numpy as np
 
 tags_metadata = [{"name": "tech-challenge-4", "description": "prevendo valor de fechamento da VIV3"}]
 
@@ -16,16 +17,13 @@ app = FastAPI(
 
 )
 
-class Features(BaseModel):
-    Model: str
-
 @app.get("/")
 def message():
     texto = "api pra prever valor de fechamento da VIV3"
     return texto
 
 @app.post("/predict", tags=["tech-challenge"])
-async def predict(Features: Features):
+async def predict():
 
     #ticker
     ticker = yf.Ticker("VIVT3.SA")
@@ -40,41 +38,54 @@ async def predict(Features: Features):
     valor_historico = valor_historico.sort_index(ascending = False)
 
     #seleciona linhas a partir do indice 0 e todos as colunas
-    dados_entrada = valor_historico.iloc[0,:]
+    dados_entrada = valor_historico
 
     #substitui valores ausentes por 0
     #dados_entrada = dados_entrada.fillna(0)
 
     #converte os dados para uma array
-    dados_entrada = dados_entrada.array
+    #dados_entrada = dados_entrada.array
 
     #redimensiona o array para o formato esperado pelo modelo
-    dados_entrada = dados_entrada.reshape(1,-1)
+    dados_entrada_2d = dados_entrada.values
+
 
     #carrega o scaler
     scaler = load("scaler.pkl")
 
     #padroniza os dados de entrada
-    dados_entrada = scaler.transform(dados_entrada)
+    dados_entrada_2d = scaler.transform(dados_entrada_2d)
 
-    #atribui modelo especificado pelo usuario
-    Model = Features.Model
-
-    #carrega modelo de ml se especificado
-    if Model == "Machine Learning":
-        arquivo = "modelo.pkl"
-        model = load(arquivo)
+    dados_entrada = dados_entrada_2d.reshape(1, dados_entrada_2d.shape[0], dados_entrada_2d.shape[1])
     
-    #faz o predict
+    #carrega modelo de ml
+    arquivo = "modelo.pkl"
+    model = load(arquivo)
+    
+    # Faz a previsão
     previsao = model.predict(dados_entrada)
-
-    #obtem o ultimo preco conhecido
-    ultimo_preco = valor_historico.iloc[0,3]
-
-    #monta respostas com modelo usado, ultimo preco e previsao
-    response = {"Modelo": Model,
-                "Ultimo_Preço": round(ultimo_preco, 2),
-                "Previsao": round(previsao.tolist()[0], 2)}
+    
+    # Verifique o conteúdo de 'previsao'
+    print("Conteúdo da previsão:", previsao)
+    
+    # Se for um único valor no array, arredonde o primeiro valor
+    previsao_arredondada = np.round(previsao[0], 2) if len(previsao) == 1 else np.round(previsao, 2)
+    
+    # Obtém o último preço conhecido
+    ultimo_preco = valor_historico.iloc[-1, 3]
+    
+    # Verifique o conteúdo de 'ultimo_preco'
+    print("Último preço:", ultimo_preco)
+    
+    # Monta a resposta com o modelo usado, o último preço e a previsão
+    response = {
+        "Modelo": arquivo,
+        "Ultimo_Preço": round(ultimo_preco, 2),
+        "Previsao": previsao_arredondada.tolist() if isinstance(previsao_arredondada, np.ndarray) else previsao_arredondada
+    }
+    
+    # Verifique o conteúdo de 'response' antes de retornar
+    print("Conteúdo da resposta:", response)
     
     return response
 

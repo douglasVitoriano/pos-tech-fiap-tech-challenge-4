@@ -1,13 +1,17 @@
 import requests
 
-# Dados que serão passados para a API
-payload = {"Model" : "Machine Learning"}
 
 # Faz a requisição à API
-resposta = requests.post("http://localhost:3000/predict", json = payload).json()
+resposta = requests.post("http://localhost:3000/predict")
 
-# Imprime a resposta
-print('\nAcessando a API do Tech Challenge 4!')
-print('\nResposta da API:\n')
-print(resposta)
+# Imprime o código de status da resposta
+print("Status code:", resposta.status_code)
+
+# Verifica se a resposta foi bem-sucedida
+if resposta.status_code == 200:
+    # Imprime a resposta JSON
+    print('\nResposta da API:\n', resposta.json())
+else:
+    print('\nErro na requisição:\n', resposta.text)
+
 print('\nObrigado Por Usar Esta API!\n')
