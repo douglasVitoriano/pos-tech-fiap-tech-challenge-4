@@ -1,5 +1,3 @@
-#caso tenha duvidas, checar comentarios em: 
-# /home/ayres/Documents/estudos/DSA - FEML4.0/Eng Software para ML/14-construcao-e-deploy-api-ml-prever-preco-bitcoin/8-Cap14/app.py
 import uvicorn
 from fastapi import FastAPI
 from pydantic import BaseModel
@@ -64,29 +62,29 @@ async def predict():
     
     # Faz a previsão
     previsao = model.predict(dados_entrada)
-    
+
     # Verifique o conteúdo de 'previsao'
     print("Conteúdo da previsão:", previsao)
-    
+
     # Se for um único valor no array, arredonde o primeiro valor
     previsao_arredondada = np.round(previsao[0], 2) if len(previsao) == 1 else np.round(previsao, 2)
-    
+
     # Obtém o último preço conhecido
     ultimo_preco = valor_historico.iloc[-1, 3]
-    
+
     # Verifique o conteúdo de 'ultimo_preco'
     print("Último preço:", ultimo_preco)
-    
+
     # Monta a resposta com o modelo usado, o último preço e a previsão
     response = {
         "Modelo": arquivo,
         "Ultimo_Preço": round(ultimo_preco, 2),
         "Previsao": previsao_arredondada.tolist() if isinstance(previsao_arredondada, np.ndarray) else previsao_arredondada
     }
-    
+
     # Verifique o conteúdo de 'response' antes de retornar
     print("Conteúdo da resposta:", response)
-    
+
     return response
 
 #inicia server
