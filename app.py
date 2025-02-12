@@ -1,6 +1,5 @@
 import uvicorn
 from fastapi import FastAPI
-from pydantic import BaseModel
 from joblib import load
 import yfinance as yf
 import numpy as np
