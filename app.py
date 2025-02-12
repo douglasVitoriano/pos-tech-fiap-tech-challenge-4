@@ -3,6 +3,7 @@ from fastapi import FastAPI
 from joblib import load
 import yfinance as yf
 import numpy as np
+from tensorflow.keras.models import load_model
 
 tags_metadata = [{"name": "tech-challenge-4", "description": "prevendo valor de fechamento da VIV3"}]
 
@@ -56,8 +57,8 @@ async def predict():
     dados_entrada = dados_entrada_2d.reshape(1, dados_entrada_2d.shape[0], dados_entrada_2d.shape[1])
     
     #carrega modelo de ml
-    arquivo = "modelo.pkl"
-    model = load(arquivo)
+    arquivo = "modelo.h5"
+    model = load_model(arquivo)
     
     # Faz a previsão
     previsao = model.predict(dados_entrada)
