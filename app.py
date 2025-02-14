@@ -57,9 +57,9 @@ async def predict():
     dados_entrada = dados_entrada_2d.reshape(1, dados_entrada_2d.shape[0], dados_entrada_2d.shape[1])
     
     #carrega modelo de ml
-    arquivo = "modelo.h5"
-    model = load_model(arquivo)
-    
+    arquivo = "modelo_completo.h5"
+    model = load_model(arquivo, compile=False)
+      
     # Faz a previsão
     previsao = model.predict(dados_entrada)
 
