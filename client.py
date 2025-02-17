@@ -2,7 +2,7 @@ import requests
 
 
 # Faz a requisição à API
-resposta = requests.post("http://localhost:3000/predict")
+resposta = requests.get("http://localhost:3000/predict")
 
 # Imprime o código de status da resposta
 print("Status code:", resposta.status_code)
