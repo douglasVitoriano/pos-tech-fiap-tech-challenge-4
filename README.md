@@ -1,5 +1,6 @@
 # Desafio de Desenvolvimento do Modelo LSTM
 
+
 ## Descrição do Projeto
 
 Este projeto tem como objetivo desenvolver um modelo de deep learning utilizando LSTM para prever os preços das ações da VIVT3. O projeto inclui a coleta de dados, pré-processamento, desenvolvimento do modelo, treinamento, avaliação, salvamento e deploy do modelo, além de monitoramento utilizando MLflow.
@@ -23,13 +24,13 @@ Este projeto tem como objetivo desenvolver um modelo de deep learning utilizando
    - **Avaliação**: Avaliação do modelo utilizando dados de validação e métricas como MAE, RMSE e MAPE.
 
 4. **Salvamento e Exportação do Modelo**
-   - **Salvar o Modelo**: Salvamento do modelo treinado em um formato que possa ser utilizado para inferência.
+   - **Salvar o Modelo**: Salvamento do modelo treinado em um formato que possa ser utilizado para inferência, neste caso, utilizamos o modelo .pkl
 
 5. **Deploy do Modelo**
    - **Criação da API**: Desenvolvimento de uma API RESTful utilizando FastAPI para servir o modelo. A API permite que o usuário forneça dados históricos de preços e receba previsões dos preços futuros.
 
 6. **Escalabilidade e Monitoramento**
-   - **Monitoramento**: Configuração de ferramentas de monitoramento para rastrear a performance do modelo em produção, incluindo tempo de resposta e utilização de recursos.
+   - **Monitoramento**: Configuração de ferramentas de monitoramento para rastrear a performance do modelo em produção, incluindo tempo de resposta e utilização de recursos. Neste caso, utilizamos o MLFlow.
 
 ## Requisitos
 
@@ -40,5 +41,5 @@ Este projeto tem como objetivo desenvolver um modelo de deep learning utilizando
 
 1. Clone o repositório:
    ```sh
-   git clone https://github.com/douglasVitoriano/pos-tech-fiap-tech-challenge-4
+   git clone https://github.com/douglasVitoriano/pos-tech-fiap-tech-challenge-4.git
    cd pos-tech-fiap-tech-challenge-4
