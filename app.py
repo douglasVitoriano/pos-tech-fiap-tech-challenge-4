@@ -18,6 +18,7 @@ app = FastAPI(
     openapi_tags=tags_metadata
 )
 
+
 # Inicializa o MLflow
 mlflow.set_tracking_uri("http://localhost:5000")  # Defina o URI para o servidor MLflow
 mlflow.set_experiment("viv3_model_predictor")  # Nome do experimento
