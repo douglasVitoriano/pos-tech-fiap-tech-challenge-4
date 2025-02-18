@@ -24,7 +24,8 @@ Este projeto tem como objetivo desenvolver um modelo de deep learning utilizando
    - **Avaliação**: Avaliação do modelo utilizando dados de validação e métricas como MAE, RMSE e MAPE.
 
 4. **Salvamento e Exportação do Modelo**
-   - **Salvar o Modelo**: Salvamento do modelo treinado em um formato que possa ser utilizado para inferência, neste caso, utilizamos o modelo .pkl
+   - **Salvar o Modelo**: Salvamento do modelo treinado em um formato que possa ser utilizado para inferência, neste caso, estamos salvando como modelo_completo.h5
+   - **Salvar os pesos**: Salvamento dos pesos do treinamento como modelo_pesos.weights.h5
 
 5. **Deploy do Modelo**
    - **Criação da API**: Desenvolvimento de uma API RESTful utilizando FastAPI para servir o modelo. A API permite que o usuário forneça dados históricos de preços e receba previsões dos preços futuros.
@@ -43,3 +44,14 @@ Este projeto tem como objetivo desenvolver um modelo de deep learning utilizando
    ```sh
    git clone https://github.com/douglasVitoriano/pos-tech-fiap-tech-challenge-4.git
    cd pos-tech-fiap-tech-challenge-4
+
+## Estrutura de Arquivos
+
+```plaintext
+├── notebooks/
+│   └── colet_and_train.ipynb
+├── .gitignore
+├── README.md
+├── app.py
+├── client.py
+├── requirements.txt
