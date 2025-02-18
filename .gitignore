@@ -139,6 +139,8 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+mlartifacts/
+mlruns/
 
 # Spyder project settings
 .spyderproject
