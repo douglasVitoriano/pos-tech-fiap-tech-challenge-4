@@ -45,8 +45,31 @@ Este projeto tem como objetivo desenvolver um modelo de deep learning utilizando
    git clone https://github.com/douglasVitoriano/pos-tech-fiap-tech-challenge-4.git
    cd pos-tech-fiap-tech-challenge-4
 
-## Estrutura de Arquivos
+## Endpoints da API
 
+**`GET /`**
+
+Retorna uma mensagem de boas-vindas.
+
+**`POST /predict`**
+
+Realiza a previsão do preço de fechamento da VIVT3.
+
+**Exemplo de Requisição**
+
+```sh
+curl -X POST "http://127.0.0.1:3000/predict"
+
+resposta:
+{
+    "Modelo": "modelo_completo.h5",
+    "Ultimo_Preço": 53.54,
+    "Previsao": [47.64]
+}
+
+
+
+## Estrutura de Arquivos
 ```plaintext
 ├── notebooks/
 │   └── colet_and_train.ipynb
