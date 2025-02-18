@@ -47,11 +47,7 @@ Este projeto tem como objetivo desenvolver um modelo de deep learning utilizando
 
 ## Endpoints da API
 
-**`GET /`**
-
-Retorna uma mensagem de boas-vindas.
-
-**`POST /predict`**
+**`GET /predict`**
 
 Realiza a previsão do preço de fechamento da VIVT3.
 
@@ -64,12 +60,11 @@ resposta:
 {
     "Modelo": "modelo_completo.h5",
     "Ultimo_Preço": 53.54,
-    "Previsao": [47.64]
+    "Previsao": 0.8754223341
 }
 
 
-
-## Estrutura de Arquivos
+ ## Estrutura de Arquivos
 ```plaintext
 ├── notebooks/
 │   └── colet_and_train.ipynb
